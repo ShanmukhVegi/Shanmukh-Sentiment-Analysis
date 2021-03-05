@@ -3,6 +3,7 @@ import pickle
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
+nltk.download("stopwords")
 from nltk.corpus import stopwords
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
