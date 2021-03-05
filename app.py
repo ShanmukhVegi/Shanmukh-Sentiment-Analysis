@@ -22,7 +22,7 @@ for i in x:
   prc_tweet = prc_tweet.lower()
   processed_tweets.append(prc_tweet)
 tfidfconverter = TfidfVectorizer(max_features=2000, min_df=3, max_df=0.7, stop_words=stopwords.words('english'))
-tfidfconverter.fit_transform(processed_tweets).toarray()
+x=tfidfconverter.fit_transform(processed_tweets).toarray()
 text_classifier=RandomForestClassifier(n_estimators=200, random_state=0)
 st.title("Please wait , while we load the page to you")
 text_classifier.fit(x,y)
