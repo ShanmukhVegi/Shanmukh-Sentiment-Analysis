@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import nltk
 from nltk.corpus import stopwords
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 
 st.title("Sentiment Analysis")
 df=pd.read_csv("https://raw.githubusercontent.com/kolaveridi/kaggle-Twitter-US-Airline-Sentiment-/master/Tweets.csv")
@@ -21,7 +22,9 @@ for i in x:
   processed_tweets.append(prc_tweet)
 tfidfconverter = TfidfVectorizer(max_features=2000, min_df=3, max_df=0.7, stop_words=stopwords.words('english'))
 tfidfconverter.fit_transform(processed_tweets).toarray()
-text_classifier=pickle.load(open("TextClassifier","rb"))
+text_classifier=RandomForestClassifier(n_estimators=200, random_state=0)
+st.title("Please wait , while we load the page to you")
+text_classifier.fit(x,y)
 select = st.text_input('Enter your message')
 prc_tweet=re.sub(r'\W',' ',select)
 prc_tweet=re.sub(r'\s+[a-zA-Z]\s+',' ',prc_tweet)
